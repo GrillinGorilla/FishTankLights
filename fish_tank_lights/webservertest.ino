@@ -67,6 +67,8 @@ uint32_t TEAL = strip.Color(0,128,128,0);
 uint32_t GREENISH_WHITE = strip.Color(0,64,0,64);
 uint32_t PINK = strip.Color(255,26,102,0);
 uint32_t BROWN = strip.Color(150,75,0,0);
+uint32_t SWEDISH_FLAG_BLUE = strip.Color(0,106,169,0);
+uint32_t SWEDISH_FLAG_YELLOW = strip.Color(254,205,0,0);
 
 /*********
   Rui Santos
@@ -85,12 +87,6 @@ WiFiServer server(80);
 
 // Variable to store the HTTP request
 String header;
-
-// Auxiliar variables to store the current output state
-String output26State = "off";
-
-// Assign output variables to GPIO pins
-const int output26 = 26;
 
 // Current time
 unsigned long currentTime = millis();
@@ -114,10 +110,6 @@ void setup() {
   
   // Webservertest
   Serial.begin(115200);
-  // Initialize the output variables as outputs
-  pinMode(output26, OUTPUT);
-  // Set outputs to LOW
-  digitalWrite(output26, LOW);
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
@@ -161,17 +153,7 @@ void loop(){
             client.println();
             
             // turns the GPIOs on and off
-            if (header.indexOf("GET /26/on") >= 0) {
-              Serial.println("GPIO 26 on");
-              output26State = "on";
-              digitalWrite(output26, HIGH);
-              set_entire_strip_color(10, RED);
-            } else if (header.indexOf("GET /26/off") >= 0) {
-              Serial.println("GPIO 26 off");
-              output26State = "off";
-              digitalWrite(output26, LOW);
-              set_entire_strip_color(10, OFF);
-            } else if (header.indexOf("GET /rgbw/apply") >= 0) {
+            if (header.indexOf("GET /rgbw/apply") >= 0) {
               Serial.println("Applying RGBW settings");
               int redAmt = 0;
               int greenAmt = 128;
@@ -180,6 +162,45 @@ void loop(){
               Serial.print("The Red Amount is:");
               Serial.println("");
               set_entire_strip_color_dynamic(10, redAmt, greenAmt, blueAmt, whiteAmt);
+            } else if (header.indexOf("GET /red/apply") >= 0) {
+              Serial.println("Applying Red settings");
+              set_entire_strip_color(1, RED);
+            } else if (header.indexOf("GET /green/apply") >= 0) {
+              Serial.println("Applying Green settings");
+              set_entire_strip_color(1, GREEN);
+            } else if (header.indexOf("GET /blue/apply") >= 0) {
+              Serial.println("Applying Blue settings");
+              set_entire_strip_color(1, BLUE);
+            } else if (header.indexOf("GET /rainbow/apply") >= 0) {
+              Serial.println("Applying Rainbow settings");
+              rainbowCycle(1);
+            } else if (header.indexOf("GET /rgbwhite/apply") >= 0) {
+              Serial.println("Applying RGB White settings");
+              set_entire_strip_color(1, RGB_WHITE);
+            } else if (header.indexOf("GET /purewhite/apply") >= 0) {
+              Serial.println("Applying Pure White settings");
+              set_entire_strip_color(1, PURE_WHITE);
+            } else if (header.indexOf("GET /pink/apply") >= 0) {
+              Serial.println("Applying Pink settings");
+              set_entire_strip_color(1, PINK);
+            } else if (header.indexOf("GET /violet/apply") >= 0) {
+              Serial.println("Applying Violet settings");
+              set_entire_strip_color(1, VIOLET);
+            } else if (header.indexOf("GET /purple/apply") >= 0) {
+              Serial.println("Applying Purple settings");
+              set_entire_strip_color(1, PURPLE);
+            } else if (header.indexOf("GET /sfb/apply") >= 0) {
+              Serial.println("Applying SFB settings");
+              set_entire_strip_color(1, SWEDISH_FLAG_BLUE);
+            } else if (header.indexOf("GET /sfy/apply") >= 0) {
+              Serial.println("Applying SFY settings");
+              set_entire_strip_color(1, SWEDISH_FLAG_YELLOW);
+            } else if (header.indexOf("GET /swedishparty/apply") >= 0) {
+              Serial.println("Starting the Swedish Party");
+              swedish_party(10);
+            } else if (header.indexOf("GET /off/apply") >= 0) {
+              Serial.println("Applying Off settings");
+              set_entire_strip_color(1, OFF);
             } 
             
             // Display the HTML web page
@@ -196,25 +217,55 @@ void loop(){
             // Web Page Heading
             client.println("<body><h1>Fish Tank Lights</h1>");
 
+//            //################################## RGBW Inputs
+//            client.println("<p><label for='RedValue'>Red Value:</label><input type='text' id='RedValue' name='RedValue' value='0'></p>");
+//            client.println("<p><label for='GreenValue'>Green Value:</label><input type='text' id='GreenValue' name='GreenValue' value='0'></p>");
+//            client.println("<p><label for='BlueValue'>Blue Value:</label><input type='text' id='BlueValue' name='BlueValue' value='0'></p>");
+//            client.println("<p><label for='WhiteValue'>White Value:</label><input type='text' id='WhiteValue' name='WhiteValue' value='0'></p>");
+//            
+//            client.println("<p><a href=\"/rgbw/apply\"><button class=\"button\">Apply RGBW Settings</button></a></p>");
+            
+
             //################################## RED BUTTON
-            // Display current state, and ON/OFF buttons for GPIO 26  
-            client.println("<p>RED - State = " + output26State + "</p>");
-            // If the output26State is off, it displays the ON button       
-            if (output26State=="off") {
-              client.println("<p><a href=\"/26/on\"><button class=\"button\">TURN ON</button></a></p>");
-            } else {
-              client.println("<p><a href=\"/26/off\"><button class=\"button button2\">TURN OFF</button></a></p>");
-            } 
+            client.println("<p><a href=\"/red/apply\"><button class=\"button\">Red</button></a></p>");
             
-            //################################## RGBW Inputs
-            client.println("<p><label for='RedValue'>Red Value:</label><input type='text' id='RedValue' name='RedValue' value='0'></p>");
-            client.println("<p><label for='GreenValue'>Green Value:</label><input type='text' id='GreenValue' name='GreenValue' value='0'></p>");
-            client.println("<p><label for='BlueValue'>Blue Value:</label><input type='text' id='BlueValue' name='BlueValue' value='0'></p>");
-            client.println("<p><label for='WhiteValue'>White Value:</label><input type='text' id='WhiteValue' name='WhiteValue' value='0'></p>");
+            //################################## GREEN BUTTON
+            client.println("<p><a href=\"/green/apply\"><button class=\"button\">Green</button></a></p>");
             
-            client.println("<p><a href=\"/rgbw/apply\"><button class=\"button\">Apply RGBW Settings</button></a></p>");
+            //################################## BLUE BUTTON
+            client.println("<p><a href=\"/blue/apply\"><button class=\"button\">Blue</button></a></p>");
+
+            //################################## RAINBOW BUTTON
+            client.println("<p><a href=\"/rainbow/apply\"><button class=\"button\">Start Rainbow</button></a></p>");
+
+            //################################## RGB WHITE BUTTON
+            client.println("<p><a href=\"/rgbwhite/apply\"><button class=\"button\">RGB White</button></a></p>");
+
+            //################################## PURE WHITE BUTTON
+            client.println("<p><a href=\"/purewhite/apply\"><button class=\"button\">Pure White</button></a></p>");
+
+            //################################## PINK BUTTON
+            client.println("<p><a href=\"/pink/apply\"><button class=\"button\">Pink</button></a></p>");
+            
+            //################################## VIOLET BUTTON
+            client.println("<p><a href=\"/violet/apply\"><button class=\"button\">Violet</button></a></p>");
+            
+            //################################## PURPLE BUTTON
+            client.println("<p><a href=\"/purple/apply\"><button class=\"button\">Purple</button></a></p>");
+
+            //################################## SFB BUTTON
+            client.println("<p><a href=\"/sfb/apply\"><button class=\"button\">SFB</button></a></p>");
+
+            //################################## SFY BUTTON
+            client.println("<p><a href=\"/sfy/apply\"><button class=\"button\">SFY</button></a></p>");
+
+            //################################## SWEDISH PARTY BUTTON
+            client.println("<p><a href=\"/swedishparty/apply\"><button class=\"button\">Start Swedish Party</button></a></p>");
+
+            //################################## OFF BUTTON
+            client.println("<p><a href=\"/off/apply\"><button class=\"button\">OFF</button></a></p>");
+
             client.println("</body></html>");
-            
             // The HTTP response ends with another blank line
             client.println();
             // Break out of the while loop
@@ -314,5 +365,88 @@ void set_entire_strip_color_dynamic(int wait, uint32_t redAmt, uint32_t greenAmt
     strip.setPixelColor(i, redAmt, greenAmt, blueAmt, whiteAmt);   
     strip.show();
     delay(wait);
+  }
+}
+
+void instant_entire_strip_color(uint32_t stripcolor)
+{
+  strip.fill(stripcolor, 0, strip.numPixels());
+  strip.show();
+}
+
+void color_chase(int wait, uint32_t stripcolor)
+{
+  for(int i=0; i<strip.numPixels(); i++) 
+  {
+    strip.fill(stripcolor, i, 3);  
+    strip.fill(OFF, 0, i);
+    strip.show();
+    delay(wait);
+  }
+}
+
+void color_chase_reverse(int wait, uint32_t stripcolor)
+{
+  for(int i=strip.numPixels(); i>(0-3); i--) 
+  {
+    strip.fill(OFF, 0, strip.numPixels());
+    strip.fill(stripcolor, i, 3);  
+    strip.show();
+    delay(wait);
+  }
+}
+
+void bounce_fill_two_colors(int wait, uint32_t stripcolor, uint32_t stripcolortwo)
+{
+  for(int i=1; i<strip.numPixels(); i++) 
+  {
+    strip.fill(stripcolortwo, 0, strip.numPixels());  
+    if (i!=0) 
+    {
+      strip.fill(stripcolor, 0, i); 
+    }    
+    
+    strip.show();
+    delay(wait);
+  }
+  
+  for(int i=strip.numPixels(); i>0; i--) 
+  {
+    strip.fill(stripcolortwo, 0, strip.numPixels());  
+    strip.fill(stripcolor, 0, i);
+    strip.show();
+    delay(wait);
+  }
+}
+
+void swedish_party(int loops)
+{
+  set_entire_strip_color(20, SWEDISH_FLAG_YELLOW);
+    
+  for(int i=0; i<loops;i++)
+  {
+    bounce_fill_two_colors(20, SWEDISH_FLAG_BLUE, SWEDISH_FLAG_YELLOW);
+  }
+  
+  for(int i=0; i<loops;i++)
+  {
+    color_chase(20, SWEDISH_FLAG_BLUE);
+    color_chase_reverse(20, SWEDISH_FLAG_BLUE);
+    color_chase(20, SWEDISH_FLAG_YELLOW);
+    color_chase_reverse(20, SWEDISH_FLAG_YELLOW);
+  }
+  
+  for(int i=0; i<loops;i++)
+  {
+    instant_entire_strip_color(SWEDISH_FLAG_BLUE);
+    delay(100);
+    instant_entire_strip_color(SWEDISH_FLAG_YELLOW);
+    delay(100);
+  }
+  
+  for(int i=0; i<loops; i++)
+  {
+    set_entire_strip_color(10, SWEDISH_FLAG_BLUE);
+    set_entire_strip_color(10, SWEDISH_FLAG_YELLOW);    
   }
 }

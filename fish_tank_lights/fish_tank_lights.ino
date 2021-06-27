@@ -5,9 +5,9 @@
 
 #define PIN 21
 
-#define NUM_OF_PIXELS 600
+#define NUM_OF_PIXELS 680
 
-#define NUM_OF_PIXELS_PER_ROW 10
+#define NUM_OF_PIXELS_PER_ROW 85
 
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = Arduino pin number (most are valid)
@@ -47,68 +47,14 @@ int RAINBOW[7] = { RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET };
 
 //#########################################
 // Define Row  Arrays
-int FIRST_ROW[NUM_OF_PIXELS_PER_ROW] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-int SECOND_ROW[NUM_OF_PIXELS_PER_ROW] = { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
-int THIRD_ROW[NUM_OF_PIXELS_PER_ROW] = { 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 };
-int FOURTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 30, 31, 32, 33, 34, 35, 36, 37, 38, 39 };
-int FIFTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 40, 41, 42, 43, 44, 45, 46, 47, 48, 49 };
-int SIXTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 };
-int SEVENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 60, 61, 62, 63, 64, 65, 66, 67, 68, 69 };
-int EIGHTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 70, 71, 72, 73, 74, 75, 76, 77, 78, 79 };
-int NINTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 };
-int TENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 90, 91, 92, 93, 94, 95, 96, 97, 98, 99 };
-int ELEVENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 100, 101, 102, 103, 104, 105, 106, 107, 108, 109 };
-int TWELVTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 110, 111, 112, 113, 114, 115, 116, 117, 118, 119 };
-int THIRTEENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 120, 121, 122, 123, 124, 125, 126, 127, 128, 129 };
-int FOURTEENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 130, 131, 132, 133, 134, 135, 136, 137, 138, 139 };
-int FIFTEENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 140, 141, 142, 143, 144, 145, 146, 147, 148, 149 };
-int SIXTEENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 150, 151, 152, 153, 154, 155, 156, 157, 158, 159 };
-int SEVENTEENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 160, 161, 162, 163, 164, 165, 166, 167, 168, 169 };
-int EIGHTEENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 170, 171, 172, 173, 174, 175, 176, 177, 178, 179 };
-int NINETEENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 180, 181, 182, 183, 184, 185, 186, 187, 188, 189 };
-int TWENTIETH_ROW[NUM_OF_PIXELS_PER_ROW] = { 190, 191, 192, 193, 194, 195, 196, 197, 198, 199 };
-int TWENTYFIRST_ROW[NUM_OF_PIXELS_PER_ROW] = { 200, 201, 202, 203, 204, 205, 206, 207, 208, 209 };
-int TWENTYSECOND_ROW[NUM_OF_PIXELS_PER_ROW] = { 210, 211, 212, 213, 214, 215, 216, 217, 218, 219 };
-int TWENTYTHIRD_ROW[NUM_OF_PIXELS_PER_ROW] = { 220, 221, 222, 223, 224, 225, 226, 227, 228, 229 };
-int TWENTYFOURTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 230, 231, 232, 233, 234, 235, 236, 237, 238, 239 };
-int TWENTYFIFTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 240, 241, 242, 243, 244, 245, 246, 247, 248, 249 };
-int TWENTYSIXTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 250, 251, 252, 253, 254, 255, 256, 257, 258, 259 };
-int TWENTYSEVENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 260, 261, 262, 263, 264, 265, 266, 267, 268, 269 };
-int TWENTYEIGHTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 270, 271, 272, 273, 274, 275, 276, 277, 278, 279 };
-int TWENTYNINTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 280, 281, 282, 283, 284, 285, 286, 287, 288, 289 };
-int THIRTIETH_ROW[NUM_OF_PIXELS_PER_ROW] = { 290, 291, 292, 293, 294, 295, 296, 297, 298, 299 };
-int THIRTYFIRST_ROW[NUM_OF_PIXELS_PER_ROW] = { 300, 301, 302, 303, 304, 305, 306, 307, 308, 309 };
-int THIRTYSECOND_ROW[NUM_OF_PIXELS_PER_ROW] = { 310, 311, 312, 313, 314, 315, 316, 317, 318, 319 };
-int THIRTYTHIRD_ROW[NUM_OF_PIXELS_PER_ROW] = { 320, 321, 322, 323, 324, 325, 326, 327, 328, 329 };
-int THIRTYFOURTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 330, 331, 332, 333, 334, 335, 336, 337, 338, 339 };
-int THIRTYFIFTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 340, 341, 342, 343, 344, 345, 346, 347, 348, 349 };
-int THIRTYSIXTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 350, 351, 352, 353, 354, 355, 356, 357, 358, 359 };
-int THIRTYSEVENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 360, 361, 362, 363, 364, 365, 366, 367, 368, 369 };
-int THIRTYEIGHTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 370, 371, 372, 373, 374, 375, 376, 377, 378, 379 };
-int THIRTYNINTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 380, 381, 382, 383, 384, 385, 386, 387, 388, 389 };
-int FORTIETH_ROW[NUM_OF_PIXELS_PER_ROW] = { 390, 391, 392, 393, 394, 395, 396, 397, 398, 399 };
-int FORTYFIRST_ROW[NUM_OF_PIXELS_PER_ROW] = { 400, 401, 402, 403, 404, 405, 406, 407, 408, 409 };
-int FORTYSECOND_ROW[NUM_OF_PIXELS_PER_ROW] = { 410, 411, 412, 413, 414, 415, 416, 417, 418, 419 };
-int FORTYTHIRD_ROW[NUM_OF_PIXELS_PER_ROW] = { 420, 421, 422, 423, 424, 425, 426, 427, 428, 429 };
-int FORTYFOURTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 430, 431, 432, 433, 434, 435, 436, 437, 438, 439 };
-int FORTYFIFTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 440, 441, 442, 443, 444, 445, 446, 447, 448, 449 };
-int FORTYSIXTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 450, 451, 452, 453, 454, 455, 456, 457, 458, 459 };
-int FORTYSEVENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 460, 461, 462, 463, 464, 465, 466, 467, 468, 469 };
-int FORTYEIGHTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 470, 471, 472, 473, 474, 475, 476, 477, 478, 479 };
-int FORTYNINTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 480, 481, 482, 483, 484, 485, 486, 487, 488, 489 };
-int FIFTIETH_ROW[NUM_OF_PIXELS_PER_ROW] = { 490, 491, 492, 493, 494, 495, 496, 497, 498, 499 };
-int FIFTYFIRST_ROW[NUM_OF_PIXELS_PER_ROW] = { 500, 501, 502, 503, 504, 505, 506, 507, 508, 509 };
-int FIFTYSECOND_ROW[NUM_OF_PIXELS_PER_ROW] = { 510, 511, 512, 513, 514, 515, 516, 517, 518, 519 };
-int FIFTYTHIRD_ROW[NUM_OF_PIXELS_PER_ROW] = { 520, 521, 522, 523, 524, 525, 526, 527, 528, 529 };
-int FIFTYFOURTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 530, 531, 532, 533, 534, 535, 536, 537, 538, 539 };
-int FIFTYFIFTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 540, 541, 542, 543, 544, 545, 546, 547, 548, 549 };
-int FIFTYSIXTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 550, 551, 552, 553, 554, 555, 556, 557, 558, 559 };
-int FIFTYSEVENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 560, 561, 562, 563, 564, 565, 566, 567, 568, 569 };
-int FIFTYEIGHTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 570, 571, 572, 573, 574, 575, 576, 577, 578, 579 };
-int FIFTYNINTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 580, 581, 582, 583, 584, 585, 586, 587, 588, 589 };
-int SIXTIETH_ROW[NUM_OF_PIXELS_PER_ROW] = { 590, 591, 592, 593, 594, 595, 596, 597, 598, 599 };
-
-
+int FIRST_ROW[NUM_OF_PIXELS_PER_ROW] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84};
+int SECOND_ROW[NUM_OF_PIXELS_PER_ROW] = { 169, 168, 167, 166, 165, 164, 163, 162, 161, 160, 159, 158, 157, 156, 155, 154, 153, 152, 151, 150, 149, 148, 147, 146, 145, 144, 143, 142, 141, 140, 139, 138, 137, 136, 135, 134, 133, 132, 131, 130, 129, 128, 127, 126, 125, 124, 123, 122, 121, 120, 119, 118, 117, 116, 115, 114, 113, 112, 111, 110, 109, 108, 107, 106, 105, 104, 103, 102, 101, 100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85 };
+int THIRD_ROW[NUM_OF_PIXELS_PER_ROW] = { 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254 };
+int FOURTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 339, 338, 337, 336, 335, 334, 333, 332, 331, 330, 329, 328, 327, 326, 325, 324, 323, 322, 321, 320, 319, 318, 317, 316, 315, 314, 313, 312, 311, 310, 309, 308, 307, 306, 305, 304, 303, 302, 301, 300, 299, 298, 297, 296, 295, 294, 293, 292, 291, 290, 289, 288, 287, 286, 285, 284, 283, 282, 281, 280, 279, 278, 277, 276, 275, 274, 273, 272, 271, 270, 269, 268, 267, 266, 265, 264, 263, 262, 261, 260, 259, 258, 257, 256, 255 };
+int FIFTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424};
+int SIXTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 509, 508, 507, 506, 505, 504, 503, 502, 501, 500, 499, 498, 497, 496, 495, 494, 493, 492, 491, 490, 489, 488, 487, 486, 485, 484, 483, 482, 481, 480, 479, 478, 477, 476, 475, 474, 473, 472, 471, 470, 469, 468, 467, 466, 465, 464, 463, 462, 461, 460, 459, 458, 457, 456, 455, 454, 453, 452, 451, 450, 449, 448, 447, 446, 445, 444, 443, 442, 441, 440, 439, 438, 437, 436, 435, 434, 433, 432, 431, 430, 429, 428, 427, 426, 425 };
+int SEVENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594};
+int EIGHTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 679, 678, 677, 676, 675, 674, 673, 672, 671, 670, 669, 668, 667, 666, 665, 664, 663, 662, 661, 660, 659, 658, 657, 656, 655, 654, 653, 652, 651, 650, 649, 648, 647, 646, 645, 644, 643, 642, 641, 640, 639, 638, 637, 636, 635, 634, 633, 632, 631, 630, 629, 628, 627, 626, 625, 624, 623, 622, 621, 620, 619, 618, 617, 616, 615, 614, 613, 612, 611, 610, 609, 608, 607, 606, 605, 604, 603, 602, 601, 600, 599, 598, 597, 596, 595 };
 
 //#########################################
 // Define Wheel
@@ -138,7 +84,7 @@ void setup() {
   // End of trinket special code
 
   strip.begin();
-  strip.setBrightness(50);
+  strip.setBrightness(255);
   strip.show(); // Initialize all pixels to 'off'
 }
 
@@ -149,33 +95,57 @@ void loop() {
   // put your main code here, to run repeatedly:
   entireStrandWheel(1);
   set_entire_strip_color(1, PURE_WHITE);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  entireStrandWheel(1);
-  set_entire_strip_color(1, GREEN);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  entireStrandWheel(1);
-  set_entire_strip_color(1, BLUE);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  rainbow_chase(100);
-  entireStrandWheel(1);
-  set_entire_strip_color(1, GREENISH_WHITE);
-
+//  rainbow_chase(1);
+  set_entire_strip_color(1, RGB_WHITE);
+  rainbow_chase(1);
+  rainbow_chase(1);
+  rainbow_chase(1);
+  rainbow_chase(1);
+//  rainbow_chase(1);
+//  rainbow_chase(1);
+//  rainbow_chase(1);
+//  rainbow_chase(100);
+//  entireStrandWheel(1);
+//  set_entire_strip_color(1, GREEN);
+//  rainbow_chase(100);
+//  rainbow_chase(100);
+//  entireStrandWheel(1);
+//  set_entire_strip_color(1, BLUE);
+//  rainbow_chase(100);
+//  rainbow_chase(100);
+//  entireStrandWheel(1);
+//  set_entire_strip_color(1, GREENISH_WHITE);
+  brighten();
+  dim();
+  brighten();
 }
 
 
 //###########################################################
 // Support functions
+
+void dim()
+{
+  for(int i=200; i>0; i--) 
+  {
+    strip.fill(PINK, 1, 680);
+    strip.setBrightness(i); 
+    strip.show();
+    delay(0);
+  } 
+}
+
+void brighten()
+{
+  for(int i=0; i<201; i++) 
+  {
+    
+    strip.fill(PINK, 1, 680);
+    strip.setBrightness(i); 
+    strip.show();
+    delay(0);
+  } 
+}
 
 void entireStrandWheel(uint8_t wait) {
   for (int j=0; j < 256; j++) {
@@ -257,7 +227,7 @@ void bright_sunny_day_no_clouds()
 void rainbow_chase(int wait)
 {
   int COUNTER = 0;
-  while(COUNTER<10)
+  while(COUNTER<85)
   {
      strip.setPixelColor(FIRST_ROW[COUNTER], RED);
      strip.setPixelColor(SECOND_ROW[COUNTER], ORANGE);
@@ -267,61 +237,6 @@ void rainbow_chase(int wait)
      strip.setPixelColor(SIXTH_ROW[COUNTER], INDIGO);
      strip.setPixelColor(SEVENTH_ROW[COUNTER], RED);
      strip.setPixelColor(EIGHTH_ROW[COUNTER], ORANGE);
-     strip.setPixelColor(NINTH_ROW[COUNTER], YELLOW);
-     strip.setPixelColor(TENTH_ROW[COUNTER], GREEN);
-     strip.setPixelColor(ELEVENTH_ROW[COUNTER], BLUE);
-     strip.setPixelColor(TWELVTH_ROW[COUNTER], INDIGO);
-     strip.setPixelColor(THIRTEENTH_ROW[COUNTER], RED);
-     strip.setPixelColor(FOURTEENTH_ROW[COUNTER], ORANGE);
-     strip.setPixelColor(FIFTEENTH_ROW[COUNTER], YELLOW);
-     strip.setPixelColor(SIXTEENTH_ROW[COUNTER], GREEN);
-     strip.setPixelColor(SEVENTEENTH_ROW[COUNTER], BLUE);
-     strip.setPixelColor(EIGHTEENTH_ROW[COUNTER], INDIGO);
-     strip.setPixelColor(NINETEENTH_ROW[COUNTER], RED);
-     strip.setPixelColor(TWENTIETH_ROW[COUNTER], ORANGE);
-     strip.setPixelColor(TWENTYFIRST_ROW[COUNTER], YELLOW);
-     strip.setPixelColor(TWENTYSECOND_ROW[COUNTER], GREEN);
-     strip.setPixelColor(TWENTYTHIRD_ROW[COUNTER], BLUE);
-     strip.setPixelColor(TWENTYFOURTH_ROW[COUNTER], INDIGO);
-     strip.setPixelColor(TWENTYFIFTH_ROW[COUNTER], RED);
-     strip.setPixelColor(TWENTYSIXTH_ROW[COUNTER], ORANGE);
-     strip.setPixelColor(TWENTYSEVENTH_ROW[COUNTER], YELLOW);
-     strip.setPixelColor(TWENTYEIGHTH_ROW[COUNTER], GREEN);
-     strip.setPixelColor(TWENTYNINTH_ROW[COUNTER], BLUE);
-     strip.setPixelColor(THIRTIETH_ROW[COUNTER], INDIGO);
-     strip.setPixelColor(THIRTYFIRST_ROW[COUNTER], RED);
-     strip.setPixelColor(THIRTYSECOND_ROW[COUNTER], ORANGE);
-     strip.setPixelColor(THIRTYTHIRD_ROW[COUNTER], YELLOW);
-     strip.setPixelColor(THIRTYFOURTH_ROW[COUNTER], GREEN);
-     strip.setPixelColor(THIRTYFIFTH_ROW[COUNTER], BLUE);
-     strip.setPixelColor(THIRTYSIXTH_ROW[COUNTER], INDIGO);
-     strip.setPixelColor(THIRTYSEVENTH_ROW[COUNTER], RED);
-     strip.setPixelColor(THIRTYEIGHTH_ROW[COUNTER], ORANGE);
-     strip.setPixelColor(THIRTYNINTH_ROW[COUNTER], YELLOW);
-     strip.setPixelColor(FORTIETH_ROW[COUNTER], GREEN);
-     strip.setPixelColor(FORTYFIRST_ROW[COUNTER], BLUE);
-     strip.setPixelColor(FORTYSECOND_ROW[COUNTER], INDIGO);
-     strip.setPixelColor(FORTYTHIRD_ROW[COUNTER], RED);
-     strip.setPixelColor(FORTYFOURTH_ROW[COUNTER], ORANGE);
-     strip.setPixelColor(FORTYFIFTH_ROW[COUNTER], YELLOW);
-     strip.setPixelColor(FORTYSIXTH_ROW[COUNTER], GREEN);
-     strip.setPixelColor(FORTYSEVENTH_ROW[COUNTER], BLUE);
-     strip.setPixelColor(FORTYEIGHTH_ROW[COUNTER], INDIGO);
-     strip.setPixelColor(FORTYNINTH_ROW[COUNTER], RED);
-     strip.setPixelColor(FIFTIETH_ROW[COUNTER], ORANGE);
-     strip.setPixelColor(FIFTYFIRST_ROW[COUNTER], YELLOW);
-     strip.setPixelColor(FIFTYSECOND_ROW[COUNTER], GREEN);
-     strip.setPixelColor(FIFTYTHIRD_ROW[COUNTER], BLUE);
-     strip.setPixelColor(FIFTYFOURTH_ROW[COUNTER], INDIGO);
-     strip.setPixelColor(FIFTYFIFTH_ROW[COUNTER], RED);
-     strip.setPixelColor(FIFTYSIXTH_ROW[COUNTER], ORANGE);
-     strip.setPixelColor(FIFTYSEVENTH_ROW[COUNTER], YELLOW);
-     strip.setPixelColor(FIFTYEIGHTH_ROW[COUNTER], GREEN);
-     strip.setPixelColor(FIFTYNINTH_ROW[COUNTER], BLUE);
-     strip.setPixelColor(SIXTIETH_ROW[COUNTER], INDIGO);
-
-
-
 
      if (COUNTER>0)
      {
@@ -333,60 +248,6 @@ void rainbow_chase(int wait)
         strip.fill(OFF, SIXTH_ROW[0], COUNTER);
         strip.fill(OFF, SEVENTH_ROW[0], COUNTER);
         strip.fill(OFF, EIGHTH_ROW[0], COUNTER);
-        strip.fill(OFF, NINTH_ROW[0], COUNTER);
-        strip.fill(OFF, TENTH_ROW[0], COUNTER);
-        strip.fill(OFF, ELEVENTH_ROW[0], COUNTER);
-        strip.fill(OFF, TWELVTH_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTEENTH_ROW[0], COUNTER);
-        strip.fill(OFF, FOURTEENTH_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTEENTH_ROW[0], COUNTER);
-        strip.fill(OFF, SIXTEENTH_ROW[0], COUNTER);
-        strip.fill(OFF, SEVENTEENTH_ROW[0], COUNTER);
-        strip.fill(OFF, EIGHTEENTH_ROW[0], COUNTER);
-        strip.fill(OFF, NINETEENTH_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTIETH_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTYFIRST_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTYSECOND_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTYTHIRD_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTYFOURTH_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTYFIFTH_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTYSIXTH_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTYSEVENTH_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTYEIGHTH_ROW[0], COUNTER);
-        strip.fill(OFF, TWENTYNINTH_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTIETH_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTYFIRST_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTYSECOND_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTYTHIRD_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTYFOURTH_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTYFIFTH_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTYSIXTH_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTYSEVENTH_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTYEIGHTH_ROW[0], COUNTER);
-        strip.fill(OFF, THIRTYNINTH_ROW[0], COUNTER);
-        strip.fill(OFF, FORTIETH_ROW[0], COUNTER);
-        strip.fill(OFF, FORTYFIRST_ROW[0], COUNTER);
-        strip.fill(OFF, FORTYSECOND_ROW[0], COUNTER);
-        strip.fill(OFF, FORTYTHIRD_ROW[0], COUNTER);
-        strip.fill(OFF, FORTYFOURTH_ROW[0], COUNTER);
-        strip.fill(OFF, FORTYFIFTH_ROW[0], COUNTER);
-        strip.fill(OFF, FORTYSIXTH_ROW[0], COUNTER);
-        strip.fill(OFF, FORTYSEVENTH_ROW[0], COUNTER);
-        strip.fill(OFF, FORTYEIGHTH_ROW[0], COUNTER);
-        strip.fill(OFF, FORTYNINTH_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTIETH_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTYFIRST_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTYSECOND_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTYTHIRD_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTYFOURTH_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTYFIFTH_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTYSIXTH_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTYSEVENTH_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTYEIGHTH_ROW[0], COUNTER);
-        strip.fill(OFF, FIFTYNINTH_ROW[0], COUNTER);
-        strip.fill(OFF, SIXTIETH_ROW[0], COUNTER);
-
-
      }
 
 

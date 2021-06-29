@@ -102,12 +102,14 @@ const char index_html[] PROGMEM = R"rawliteral(
     h2 {font-size: 3.0rem;}
     p {font-size: 3.0rem;}
     body {max-width: 600px; margin:0px auto; padding-bottom: 25px;}
-    .switch {position: relative; display: inline-block; width: 120px; height: 68px} 
-    .switch input {display: none}
-    .slider {position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; border-radius: 6px}
-    .slider:before {position: absolute; content: ""; height: 52px; width: 52px; left: 8px; bottom: 8px; background-color: #fff; -webkit-transition: .4s; transition: .4s; border-radius: 3px}
-    input:checked+.slider {background-color: #b30000}
-    input:checked+.slider:before {-webkit-transform: translateX(52px); -ms-transform: translateX(52px); transform: translateX(52px)}
+//    .switch {position: relative; display: inline-block; width: 120px; height: 68px} 
+//    .switch input {display: none}
+//    .slider {position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; border-radius: 6px}
+//    .slider:before {position: absolute; content: ""; height: 52px; width: 52px; left: 8px; bottom: 8px; background-color: #fff; -webkit-transition: .4s; transition: .4s; border-radius: 3px}
+//    input:checked+.slider {background-color: #b30000}
+//    input:checked+.slider:before {-webkit-transform: translateX(52px); -ms-transform: translateX(52px); transform: translateX(52px)}
+    .button {background-color: #4CAF50; border: none; color: white; padding: 16px 40px; text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}
+    .button2 {background-color: #555555;}
   </style>
 </head>
 <body>
@@ -130,7 +132,19 @@ String processor(const String& var){
   //Serial.println(var);
   if(var == "BUTTONPLACEHOLDER"){
     String buttons = "";
-    buttons += "<h4>Rainbow</h4><label class=\'switch\'><input type=\'checkbox\' onchange=\'toggleCheckbox(this)\' id=\'rainbow\'><span class=\'slider\'></span></label>";
+    buttons += "<input type=\'button\' id=\'off\' value=\'Off\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'ultra_low_bright\' value=\'Ultra Low Brightness\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'low_bright\' value=\'Low Brightness\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'med_bright\' value=\'Medium Brightness\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'high_bright\' value=\'High Brightness\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'rainbow\' value=\'Rainbow\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'red_wipe\' value=\'Red Wipe\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'blue_wipe\' value=\'Blue Wipe\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'green_wipe\' value=\'Green Wipe\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'pink_wipe\' value=\'Pink Wipe\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'violet_wipe\' value=\'Violet Wipe\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'rgb_white_wipe\' value=\'RGB White Wipe\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
+    buttons += "<input type=\'button\' id=\'pure_white_wipe\' value=\'Pure White Wipe\' class=\'button\' onclick=\'toggleCheckbox(this)\'>";
     return buttons;
   }
   return String();
@@ -166,11 +180,99 @@ void setup(){
     {
       inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
       
+      if (inputMessage1 == "off")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        set_entire_strip_color(20, OFF);
+      }
+      
+      if (inputMessage1 == "ultra_low_bright")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        strip.setBrightness(25);
+        strip.show();
+      }
+      
+      if (inputMessage1 == "low_bright")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        strip.setBrightness(50);
+        strip.show();
+      }
+      
+      if (inputMessage1 == "med_bright")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        strip.setBrightness(100);
+        strip.show();
+      }
+      
+      if (inputMessage1 == "high_bright")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        strip.setBrightness(200);
+        strip.show();
+      }
+      
       if (inputMessage1 == "rainbow")
       {
         Serial.print("The ID is: ");
         Serial.println(inputMessage1);
         rainbowCycle(1);
+      }
+      
+      if (inputMessage1 == "red_wipe")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        set_entire_strip_color(20, RED);
+      }
+      
+      if (inputMessage1 == "blue_wipe")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        set_entire_strip_color(20, BLUE);
+      }
+      
+      if (inputMessage1 == "green_wipe")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        set_entire_strip_color(20, GREEN);
+      }
+      
+      if (inputMessage1 == "pink_wipe")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        set_entire_strip_color(20, PINK);
+      }
+      
+      if (inputMessage1 == "violet_wipe")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        set_entire_strip_color(20, VIOLET);
+      }
+      
+      if (inputMessage1 == "rgb_white_wipe")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        set_entire_strip_color(20, RGB_WHITE);
+      }
+      
+      if (inputMessage1 == "pure_white_wipe")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        set_entire_strip_color(20, PURE_WHITE);
       }
       
     }
@@ -320,32 +422,11 @@ void bounce_fill_two_colors(int wait, uint32_t stripcolor, uint32_t stripcolortw
 
 void swedish_party(int loops)
 {
-  set_entire_strip_color(20, SWEDISH_FLAG_YELLOW);
-    
-  for(int i=0; i<loops;i++)
-  {
-    bounce_fill_two_colors(20, SWEDISH_FLAG_BLUE, SWEDISH_FLAG_YELLOW);
-  }
-  
-  for(int i=0; i<loops;i++)
-  {
-    color_chase(20, SWEDISH_FLAG_BLUE);
-    color_chase_reverse(20, SWEDISH_FLAG_BLUE);
-    color_chase(20, SWEDISH_FLAG_YELLOW);
-    color_chase_reverse(20, SWEDISH_FLAG_YELLOW);
-  }
-  
   for(int i=0; i<loops;i++)
   {
     instant_entire_strip_color(SWEDISH_FLAG_BLUE);
     delay(100);
     instant_entire_strip_color(SWEDISH_FLAG_YELLOW);
     delay(100);
-  }
-  
-  for(int i=0; i<loops; i++)
-  {
-    set_entire_strip_color(10, SWEDISH_FLAG_BLUE);
-    set_entire_strip_color(10, SWEDISH_FLAG_YELLOW);    
   }
 }

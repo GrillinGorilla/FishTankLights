@@ -8,20 +8,27 @@
  #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
 #endif
 
-// Which pin will output data?
-#define LED_PIN     21
+// Which pin will output data to the light fixture?
+#define LED_PIN     17
 
-// How many NeoPixels are attached to the Arduino?
-#define LED_COUNT  682
+// How many NeoPixels are attached to the light fixture?
+#define LED_COUNT  680
 
 // How many LEDs (pixels) per row? 
 #define NUM_OF_PIXELS_PER_ROW 85
+
+// Which pin will output data to the power button?
+#define POWER_BUTTON_LED_PIN     21
+
+// How many NeoPixels are attached to the power button?
+#define POWER_BUTTON_LED_COUNT 4
 
 // NeoPixel brightness, 0 (min) to 255 (max)
 #define BRIGHTNESS 50  // Set BRIGHTNESS to about 1/5 (max = 255)
 
 // Declare our NeoPixel strip object:
-Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRBW + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRBW + NEO_KHZ800);
+Adafruit_NeoPixel power_button_strip = Adafruit_NeoPixel(POWER_BUTTON_LED_COUNT, POWER_BUTTON_LED_PIN, NEO_GRBW + NEO_KHZ800);
 // Argument 1 = Number of pixels in NeoPixel strip
 // Argument 2 = Arduino pin number (most are valid)
 // Argument 3 = Pixel type flags, add together as needed:
@@ -55,6 +62,7 @@ uint32_t RED = strip.Color(255,0,0,0);
 uint32_t ORANGE = strip.Color(255,165,0,0);
 uint32_t YELLOW = strip.Color(255,255,0,0);
 uint32_t GREEN = strip.Color(0,255,0,0);
+uint32_t XBOX_GREEN = strip.Color(128,255,0,0);
 uint32_t BLUE = strip.Color(0,0,255,0);
 uint32_t INDIGO = strip.Color(75,0,130,0);
 uint32_t VIOLET = strip.Color(238,130,238,0);
@@ -68,6 +76,7 @@ uint32_t PINK = strip.Color(255,26,102,0);
 uint32_t BROWN = strip.Color(150,75,0,0);
 uint32_t SWEDISH_FLAG_BLUE = strip.Color(0,106,169,0);
 uint32_t SWEDISH_FLAG_YELLOW = strip.Color(254,205,0,0);
+uint32_t COPPER = strip.Color(230,30,0,0);
 
 //#########################################
 // Define Color Arrays
@@ -75,14 +84,14 @@ int RAINBOW[7] = { RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET };
 
 //#########################################
 // Define Row  Arrays
-int FIRST_ROW[NUM_OF_PIXELS_PER_ROW] = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86 };
-int SECOND_ROW[NUM_OF_PIXELS_PER_ROW] = { 171, 170, 169, 168, 167, 166, 165, 164, 163, 162, 161, 160, 159, 158, 157, 156, 155, 154, 153, 152, 151, 150, 149, 148, 147, 146, 145, 144, 143, 142, 141, 140, 139, 138, 137, 136, 135, 134, 133, 132, 131, 130, 129, 128, 127, 126, 125, 124, 123, 122, 121, 120, 119, 118, 117, 116, 115, 114, 113, 112, 111, 110, 109, 108, 107, 106, 105, 104, 103, 102, 101, 100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87 };
-int THIRD_ROW[NUM_OF_PIXELS_PER_ROW] = { 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256 };
-int FOURTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 341, 340, 339, 338, 337, 336, 335, 334, 333, 332, 331, 330, 329, 328, 327, 326, 325, 324, 323, 322, 321, 320, 319, 318, 317, 316, 315, 314, 313, 312, 311, 310, 309, 308, 307, 306, 305, 304, 303, 302, 301, 300, 299, 298, 297, 296, 295, 294, 293, 292, 291, 290, 289, 288, 287, 286, 285, 284, 283, 282, 281, 280, 279, 278, 277, 276, 275, 274, 273, 272, 271, 270, 269, 268, 267, 266, 265, 264, 263, 262, 261, 260, 259, 258, 257};
-int FIFTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426 };
-int SIXTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 511, 510, 509, 508, 507, 506, 505, 504, 503, 502, 501, 500, 499, 498, 497, 496, 495, 494, 493, 492, 491, 490, 489, 488, 487, 486, 485, 484, 483, 482, 481, 480, 479, 478, 477, 476, 475, 474, 473, 472, 471, 470, 469, 468, 467, 466, 465, 464, 463, 462, 461, 460, 459, 458, 457, 456, 455, 454, 453, 452, 451, 450, 449, 448, 447, 446, 445, 444, 443, 442, 441, 440, 439, 438, 437, 436, 435, 434, 433, 432, 431, 430, 429, 428, 427 };
-int SEVENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596 };
-int EIGHTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 681, 680, 679, 678, 677, 676, 675, 674, 673, 672, 671, 670, 669, 668, 667, 666, 665, 664, 663, 662, 661, 660, 659, 658, 657, 656, 655, 654, 653, 652, 651, 650, 649, 648, 647, 646, 645, 644, 643, 642, 641, 640, 639, 638, 637, 636, 635, 634, 633, 632, 631, 630, 629, 628, 627, 626, 625, 624, 623, 622, 621, 620, 619, 618, 617, 616, 615, 614, 613, 612, 611, 610, 609, 608, 607, 606, 605, 604, 603, 602, 601, 600, 599, 598, 597 };
+int FIRST_ROW[NUM_OF_PIXELS_PER_ROW] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84 };
+int SECOND_ROW[NUM_OF_PIXELS_PER_ROW] = { 169, 168, 167, 166, 165, 164, 163, 162, 161, 160, 159, 158, 157, 156, 155, 154, 153, 152, 151, 150, 149, 148, 147, 146, 145, 144, 143, 142, 141, 140, 139, 138, 137, 136, 135, 134, 133, 132, 131, 130, 129, 128, 127, 126, 125, 124, 123, 122, 121, 120, 119, 118, 117, 116, 115, 114, 113, 112, 111, 110, 109, 108, 107, 106, 105, 104, 103, 102, 101, 100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85 };
+int THIRD_ROW[NUM_OF_PIXELS_PER_ROW] = { 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254 };
+int FOURTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 339, 338, 337, 336, 335, 334, 333, 332, 331, 330, 329, 328, 327, 326, 325, 324, 323, 322, 321, 320, 319, 318, 317, 316, 315, 314, 313, 312, 311, 310, 309, 308, 307, 306, 305, 304, 303, 302, 301, 300, 299, 298, 297, 296, 295, 294, 293, 292, 291, 290, 289, 288, 287, 286, 285, 284, 283, 282, 281, 280, 279, 278, 277, 276, 275, 274, 273, 272, 271, 270, 269, 268, 267, 266, 265, 264, 263, 262, 261, 260, 259, 258, 257, 256, 255 };
+int FIFTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424 };
+int SIXTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 509, 508, 507, 506, 505, 504, 503, 502, 501, 500, 499, 498, 497, 496, 495, 494, 493, 492, 491, 490, 489, 488, 487, 486, 485, 484, 483, 482, 481, 480, 479, 478, 477, 476, 475, 474, 473, 472, 471, 470, 469, 468, 467, 466, 465, 464, 463, 462, 461, 460, 459, 458, 457, 456, 455, 454, 453, 452, 451, 450, 449, 448, 447, 446, 445, 444, 443, 442, 441, 440, 439, 438, 437, 436, 435, 434, 433, 432, 431, 430, 429, 428, 427, 426, 425 };
+int SEVENTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594 };
+int EIGHTH_ROW[NUM_OF_PIXELS_PER_ROW] = { 679, 678, 677, 676, 675, 674, 673, 672, 671, 670, 669, 668, 667, 666, 665, 664, 663, 662, 661, 660, 659, 658, 657, 656, 655, 654, 653, 652, 651, 650, 649, 648, 647, 646, 645, 644, 643, 642, 641, 640, 639, 638, 637, 636, 635, 634, 633, 632, 631, 630, 629, 628, 627, 626, 625, 624, 623, 622, 621, 620, 619, 618, 617, 616, 615, 614, 613, 612, 611, 610, 609, 608, 607, 606, 605, 604, 603, 602, 601, 600, 599, 598, 597, 596, 595 };
 
 // Import required libraries
 #include <WiFi.h>
@@ -140,6 +149,9 @@ const char index_html[] PROGMEM = R"rawliteral(
   <input type='button' id='rgb_white_wipe' value='RGB White Wipe' class='button' onclick='runColorFunction(this)'>
   <input type='button' id='pure_white_wipe' value='Pure White Wipe' class='button' onclick='runColorFunction(this)'>
   <input type='button' id='rainbow_chase' value='Rainbow Chase' class='button' onclick='runColorFunction(this)'>
+  <input type='button' id='swedish_party' value='Swedish Party' class='button' onclick='runColorFunction(this)'>
+  <input type='button' id='xbox_rrod' value='XBOX RROD' class='button' onclick='runColorFunction(this)'>
+  <input type='button' id='xbox_power_on' value='XBOX On' class='button' onclick='runColorFunction(this)'>
   <div class='custom_tile'>
     <h3>Custom Color Builder</h3>
     <p><span class='custom_label'>Red Value:</span><input type='text' id='red_value' name='red_value' placeholder='Enter 0-255' class='custom_text_box'></p>
@@ -157,14 +169,15 @@ const char index_html[] PROGMEM = R"rawliteral(
   }
 
   function buildCustomColor()
-  {
+  {    
+    var id = document.getElementById("custom_color_button").id
     var redval = document.getElementById("red_value").value
     var greenval = document.getElementById("green_value").value
     var blueval = document.getElementById("blue_value").value
     var whiteval = document.getElementById("white_value").value
     
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/update?output="+element.id+"&redval="+redval+"&greenval="+greenval+"&blueval="+blueval+"&whiteval="+whiteval, true);
+    xhr.open("GET", "/custom?output="+id+"&redval="+redval+"&greenval="+greenval+"&blueval="+blueval+"&whiteval="+whiteval, true);
     xhr.send();
   }
 </script>
@@ -216,7 +229,9 @@ void setup(){
     
     uint32_t CUSTOM_COLOR = strip.Color(valred.toInt(),valgreen.toInt(),valblue.toInt(),valwhite.toInt());
 
-    set_entire_strip_color(20, CUSTOM_COLOR);
+    Serial.print("The ID is: ");
+    Serial.println(inputMessage1);
+    all_column_wipe_with_color(20, CUSTOM_COLOR);
     
   });
 
@@ -337,6 +352,27 @@ void setup(){
         rainbow_chase(20);
       }
       
+      if (inputMessage1 == "swedish_party")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        swedish_party(20);
+      }
+      
+      if (inputMessage1 == "xbox_rrod")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        xbox_rrod();
+      }
+      
+      if (inputMessage1 == "xbox_power_on")
+      {
+        Serial.print("The ID is: ");
+        Serial.println(inputMessage1);
+        turn_power_button_leds_on();
+      }
+      
     }
     else 
     {
@@ -352,6 +388,7 @@ void setup(){
   // Run these functions to indicate website is ready
   rainbow_chase(1);
   rainbow_chase(1);
+  strip.clear();
 }
 
 void loop() {
@@ -361,19 +398,67 @@ void loop() {
 //##################################################
 // Start of supporting functions
 
+// Mimics the XBOX360 power button sequence
 void turn_power_button_leds_on()
 {
-  strip.clear();
-  strip.fill(GREEN, 0, 2);
-  strip.show();
+  power_button_strip.clear();
+  power_button_strip.setBrightness(200);
+
+  delay (1000);
+
+  uint16_t loops, pixel;
+  for(loops=0; loops<6; loops++)
+  {
+    power_button_strip.clear();
+    power_button_strip.setPixelColor(1, XBOX_GREEN);
+    power_button_strip.show();   
+    delay(150);
+    power_button_strip.clear();
+    power_button_strip.setPixelColor(0, XBOX_GREEN);
+    power_button_strip.show();   
+    delay(150);
+    power_button_strip.clear();
+    power_button_strip.setPixelColor(3, XBOX_GREEN);
+    power_button_strip.show();   
+    delay(150);
+    power_button_strip.clear();
+    power_button_strip.setPixelColor(2, XBOX_GREEN);
+    power_button_strip.show();   
+    delay(150);
+  }
+
+  for(int flashes=0; flashes<4; flashes++)
+  {
+    power_button_strip.clear();
+    power_button_strip.show();
+    delay(150);
+    power_button_strip.fill(XBOX_GREEN, 0, 4);
+    power_button_strip.show();
+    delay(150);
+  }
+  
+  
+  power_button_strip.fill(XBOX_GREEN, 0, 4);
+  power_button_strip.show();
+}
+
+// Mimics the XBOX360 RROD
+void xbox_rrod()
+{
+  for(int flashes=0; flashes<4; flashes++)
+  {
+    power_button_strip.clear();
+    power_button_strip.show();
+    delay(150);
+    power_button_strip.fill(RED, 0, 4);
+    power_button_strip.show();
+    delay(150);
+  }  
 }
 
 // All columns wipe
 void all_column_wipe_with_color(int wait, uint32_t color)
 {
-  // turn xbox power leds on
-  turn_power_button_leds_on();
-
   // start of function
   int COUNTER = 0;
   while(COUNTER<=84)
@@ -397,9 +482,6 @@ void all_column_wipe_with_color(int wait, uint32_t color)
 
 void rainbow_chase(int wait)
 {
-  // turn xbox power leds on
-  turn_power_button_leds_on();
-
   // start of function
   int COUNTER = 0;
   while(COUNTER<=84)
@@ -421,14 +503,13 @@ void rainbow_chase(int wait)
     delay(wait); 
     COUNTER++;
   }
+  strip.clear();
+  strip.show();
 }
 
 // Slightly different, this makes the rainbow equally distributed throughout
 void rainbowCycle(uint8_t wait) 
 {
-  // turn xbox power leds on
-  turn_power_button_leds_on();
-
   // start of function
   uint16_t i, j;
 
@@ -441,79 +522,10 @@ void rainbowCycle(uint8_t wait)
   }
 }
 
-void set_entire_strip_color(int wait, uint32_t stripcolor)
-{
-  for(int i=0; i<strip.numPixels(); i++) 
-  {
-    strip.setPixelColor(i, stripcolor);   
-    strip.show();
-    delay(wait);
-  }
-}
-
-void set_entire_strip_color_dynamic(int wait, uint32_t redAmt, uint32_t greenAmt, uint32_t blueAmt, uint32_t whiteAmt)
-{
-  // turn xbox power leds on
-  turn_power_button_leds_on();
-
-  // start of function
-  for(int i=0; i<strip.numPixels(); i++) 
-  {
-    strip.setPixelColor(i, redAmt, greenAmt, blueAmt, whiteAmt);   
-    strip.show();
-    delay(wait);
-  }
-}
-
 void instant_entire_strip_color(uint32_t stripcolor)
 {
   strip.fill(stripcolor, 0, strip.numPixels());
   strip.show();
-}
-
-void color_chase(int wait, uint32_t stripcolor)
-{
-  for(int i=0; i<strip.numPixels(); i++) 
-  {
-    strip.fill(stripcolor, i, 3);  
-    strip.fill(OFF, 0, i);
-    strip.show();
-    delay(wait);
-  }
-}
-
-void color_chase_reverse(int wait, uint32_t stripcolor)
-{
-  for(int i=strip.numPixels(); i>(0-3); i--) 
-  {
-    strip.fill(OFF, 0, strip.numPixels());
-    strip.fill(stripcolor, i, 3);  
-    strip.show();
-    delay(wait);
-  }
-}
-
-void bounce_fill_two_colors(int wait, uint32_t stripcolor, uint32_t stripcolortwo)
-{
-  for(int i=1; i<strip.numPixels(); i++) 
-  {
-    strip.fill(stripcolortwo, 0, strip.numPixels());  
-    if (i!=0) 
-    {
-      strip.fill(stripcolor, 0, i); 
-    }    
-    
-    strip.show();
-    delay(wait);
-  }
-  
-  for(int i=strip.numPixels(); i>0; i--) 
-  {
-    strip.fill(stripcolortwo, 0, strip.numPixels());  
-    strip.fill(stripcolor, 0, i);
-    strip.show();
-    delay(wait);
-  }
 }
 
 void swedish_party(int loops)
